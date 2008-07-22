@@ -1,13 +1,20 @@
 <html>
 <head>
 <title><%$title || 'syncwith.us' %></title>
+<link rel="stylesheet" type="text/css" href="/style.css">
 <body>
-<h1>syncwith.us</h1>
-% if ($title) {
-<h2><%$title%></h2>
-% }
-<%$m->content|n%>
+<div class="nav">
 <& sidebar&>
+</div>
+<div class="heading">
+<div class="site">syncwith.us</div>
+% if ($title) {
+<h1><%$title%></h1>
+% }
+</div>
+<div class="content">
+<%$m->content|n%>
+</div>
 </body>
 </html>
 <%args>

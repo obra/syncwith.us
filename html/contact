@@ -1,0 +1,7 @@
+<&|/_elements/wrapper, title => 'Get in touch' &>
+<p>Despite Prophet being designed for "offline" replication, Prophet's developers are nearly constantly online.  You can usually find us on IRC and can always contact us by email.</p>
+<h3>IRC</h3>
+<p>Prophet's developers hang out on <code>#prophet</code> on <code>irc.freenode.net</code>.
+<h3>Electronic Mail</h3>
+<p>If you're looking for something a little more asynchronous than IRC, electronic mail is always a reasonable option. You can <a href="http://lists.bestpractical.com/mailman/listinfo/prophet">sign up for the Prophet mailing list or browse the list archives</a> over at Best Practical's mailing list server.
+</&>

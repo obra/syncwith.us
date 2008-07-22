@@ -1,0 +1,73 @@
+body {
+  background: #005;
+  font-family: arial, helvetica, sans-serif; 
+  
+}
+
+div.nav {
+
+  position: absolute;
+  width: 9em;
+}
+
+div.nav, div.content, div.heading {
+  background: #fff;
+  border: 1px solid black;
+  border-top: 2px solid #ccc;
+  border-left: 2px solid #ccc;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+
+}
+
+
+div.nav ul {
+  font-size: 0.9em;
+   padding-left: 1em;
+   list-style: none;
+}
+
+div.nav li { 
+
+   padding-top: 0.3em;
+}
+
+div.nav a {
+  text-decoration: none;
+  color: #000;
+  
+}
+
+
+
+div.nav li a:hover {
+  color: #009;
+  text-decoration: underline;
+}
+
+div.heading .site {
+ text-align: right;
+ padding-right: 1em;
+ padding-top: 0.5em;
+ font-style: italic;
+}
+
+div.heading h1 {
+  font-size: 1.8em;
+}
+
+div.heading {
+  position: absolute;
+  left: 10em;
+  right: 1em;
+  padding-left: 1em;
+  
+}
+div.content {
+  position: absolute;
+  left: 10em;
+  right: 1em;
+  top: 8em;
+  padding: 1em;
+}
+
