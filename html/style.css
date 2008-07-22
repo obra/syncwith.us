@@ -71,3 +71,6 @@ div.content {
   padding: 1em;
 }
 
+div.content blockquote {
+ overflow-x: scroll;
+}
