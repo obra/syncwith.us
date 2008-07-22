@@ -1,0 +1,15 @@
+<html>
+<head>
+<title><%$title || 'syncwith.us' %></title>
+<body>
+<h1>syncwith.us</h1>
+% if ($title) {
+<h2><%$title%></h2>
+% }
+<%$m->content|n%>
+<& sidebar&>
+</body>
+</html>
+<%args>
+$title => undef
+</%args>

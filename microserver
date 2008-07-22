@@ -1,0 +1,25 @@
+              #!/usr/bin/perl
+               
+               
+               
+               my $server = MyApp::Server->new();
+
+               $server->run;
+
+               package MyApp::Server;
+               use base qw/HTTP::Server::Simple::Mason/;
+              use File::Spec;
+
+            sub handle_request {
+                my $self = shift;
+                my $cgi = shift;
+                $x = $cgi->path_info;
+                $x =~ s/\/index.html$/\//g;
+                $cgi->path_info($x);
+                $self->SUPER::handle_request($cgi);
+            }
+
+               sub mason_config {
+                   return ( comp_root => File::Spec->rel2abs('./html')
+                    , static_source => 0 );
+}
