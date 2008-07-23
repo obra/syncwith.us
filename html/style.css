@@ -1,22 +1,36 @@
 body {
   background: #005;
   font-family: arial, helvetica, sans-serif; 
-  
+  background-image: url('/bg.jpg');
 }
 
 div.nav {
 
   position: absolute;
+  top: 8em;
   width: 9em;
 }
 
-div.nav, div.content, div.heading {
+div.nav, div.content {
   background: #fff;
   border: 1px solid black;
   border-top: 2px solid #ccc;
   border-left: 2px solid #ccc;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+
+}
+
+div.heading {
+  color: #fff;
+}
+
+
+div.heading h1 {
+ text-align: center;
+margin-left: -0.5em;
+padding-top:0.25em;
+padding-bottom:0.25em;
 
 }
 
@@ -74,3 +88,4 @@ div.content {
 div.content blockquote {
  overflow-x: scroll;
 }
+
