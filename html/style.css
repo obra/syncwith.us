@@ -1,7 +1,9 @@
 body {
-  background: #005;
+  background: #000;
   font-family: arial, helvetica, sans-serif; 
   background-image: url('/bg.jpg');
+  background-position: top left;
+  background-repeat: no-repeat;
 }
 
 div.nav {
@@ -11,7 +13,7 @@ div.nav {
   width: 9em;
 }
 
-div.nav, div.content {
+div.nav, div.content, div.license {
   background: #fff;
   border: 1px solid black;
   border-top: 2px solid #ccc;
@@ -77,15 +79,29 @@ div.heading {
   padding-left: 1em;
   
 }
-div.content {
+
+div.body {
   position: absolute;
+  top: 8em;
   left: 10em;
   right: 1em;
-  top: 8em;
+
+}
+
+
+div.license {
+  margin-top: 1em;
+
   padding: 1em;
+}
+
+div.content {
+  padding: 1em;
+
 }
 
 div.content blockquote {
  overflow-x: scroll;
 }
+
 

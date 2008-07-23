@@ -12,11 +12,21 @@
 <h1><%$title%></h1>
 % }
 </div>
+<div class="body">
 <div class="content">
 <font color="red">
 Heads up, this site won't be live until wednesday. we know about the missing content and server errors.
 </font>
 <%$m->content|n%>
+</div>
+<div class="license">
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">
+<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/us/88x31.png" />
+</a>
+<span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dc:title" rel="dc:type">syncwith.us</span> by 
+<a xmlns:cc="http://creativecommons.org/ns#" href="http://syncwith.us" property="cc:attributionName" rel="cc:attributionURL">The Prophet Team</a> is licensed under a 
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.
+</div>
 </div>
 </body>
 </html>
