@@ -28,6 +28,15 @@ Heads up, this site won't be live until wednesday. we know about the missing con
 <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.
 </div>
 </div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-937849-4");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
 </body>
 </html>
 <%args>
