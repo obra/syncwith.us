@@ -1,5 +1,17 @@
 <&| /_elements/wrapper, title => 'Using SD' &>
 <h2>Setting up your environment</h2>
+<p>To tell SD where to find your bug database, you simply need to set the environment variable <code>SD_REPO</code>
+</p>
+<blockquote><code>export SD_REPO=~/.sd-bugs</code></blockquote>
+
+<p>To configure listing formats, you can set configuration directives in your 'prophetrc' file inside your SD repository. For example:</p>
+<blockquote>
+<code>
+summary_format_ticket = %4s },$luid | %-11.11s,status | %-70.70s,summary
+
+</code>
+</blockquote>
+</p>
 <h2>Working with bugs locally</h2>
 <h3>Create</h3>
 
