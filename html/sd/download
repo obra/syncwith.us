@@ -1,0 +1,21 @@
+<&| /_elements/wrapper, title => 'Get SD' &>
+
+<p>At this early stage of the game, you should probably download SD directly from its home in Subversion.</p>
+<p>Before you install SD, you'll need to <a href="/prophet/download">install Prophet</a>.
+</p>
+<p>The following command will get you a copy of the source tree you can install:</p>
+<blockquote>
+<pre>svn co http://code.bestpractical.com/bps-public/sd/trunk sd</pre>
+</blockquote>
+<p>Once you've downloaded SD, you can install it:</p>
+<blockquote>
+<pre>cd sd
+PERL_MM_USE_DEFAULT=1 perl Makefile.PL
+make test
+make install
+</pre>
+</blockquote>
+<p>In the hopefully unlikely event that SD doesn't pass its tests, please <a href="/contact">tell the developers about it</a> so we can improve things.
+</p>
+
+</&>

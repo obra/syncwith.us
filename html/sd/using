@@ -1,0 +1,75 @@
+<&| /_elements/wrapper, title => 'Using SD' &>
+<h2>Setting up your environment</h2>
+<h2>Working with bugs locally</h2>
+<h3>Create</h3>
+
+
+<code>
+sd ticket create -- summary="This is a test ticket" status=new sample-property="any prop name is ok!"
+</code>
+
+<h3>Display</h3>
+
+<code>
+sd ticket show --id 35
+</code>
+
+
+<h3>Search and List</h3>
+
+<code>
+sd ticket list
+</code>
+
+
+<h3>Update</h3>
+
+<code>
+sd ticket update --id 35 -- status=resolved
+</code>
+
+<h3>Comments</h3>
+
+
+<code>
+sd ticket comment create --id 35<br>
+sd ticket comment list --id 35<br>
+sd ticket comment show --id 1234<br>
+</code>
+
+
+
+<h3>Attachments</h3>
+<code>
+sd ticket attachment create --id 35 --file=bugfix.patch<br>
+sd ticket attachment list --id 35<br>
+sd ticket attachment show --id 1234<br>
+sd ticket attachment content --id 1234 > to_apply.patch<br>
+</code>
+<h2>Syncing</h2>
+<h3>...with other SD users</h3>
+
+<p><b>Publishing:</b></p>
+<code>
+sd publish --to jesse@syncwith.us:~/public_html/my_bugs
+</code>
+
+<p><b>Pulling:</b></p>
+<code>
+sd pull --from http://syncwith.us/~clkao/mybugs
+</code>
+
+<h3>...with other bug tracking systems</h3>
+<p>The first external systems SD can sync with are <a href="http://bestpractical.com/rt">RT</a> and <a href="http://hiveminder.com">Hiveminder</a>.  Building <i>foreign replica types</i> for other bug tracking systemis a fairly straightforward process.
+If you're interested in building a replica type for your bug tracker
+ <a href="/contact">drop Prophet's developers a line</a>.
+<p><b>Pushing:</b></p>
+<code>
+sd push --to rt:http://rt3.fsck.com|rt3|Owner='jesse'
+</code>
+
+<p><b>Pulling:</b></p>
+<code>
+sd pull --from rt:http://rt3.fsck.com|rt3|Owner='jesse'
+</code>
+</&>
