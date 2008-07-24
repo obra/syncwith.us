@@ -2,10 +2,10 @@
 <h2>Setting up your environment</h2>
 <p>To tell SD where to find your bug database, you simply need to set the environment variable <code>SD_REPO</code>
 </p>
-<blockquote><code>export SD_REPO=~/.sd-bugs</code></blockquote>
+<blockquote class="code"><code>export SD_REPO=~/.sd-bugs</code></blockquote>
 
 <p>To configure listing formats, you can set configuration directives in your 'prophetrc' file inside your SD repository. For example:</p>
-<blockquote>
+<blockquote class="code">
 <code>
 summary_format_ticket = %4s },$luid | %-11.11s,status | %-70.70s,summary
 
@@ -16,72 +16,92 @@ summary_format_ticket = %4s },$luid | %-11.11s,status | %-70.70s,summary
 <h3>Create</h3>
 
 
+<blockquote class="code">
 <code>
 sd ticket create -- summary="This is a test ticket" status=new sample-property="any prop name is ok!"
 </code>
+</blockquote>
 
 <h3>Display</h3>
 
+<blockquote class="code">
 <code>
 sd ticket show --id 35
 </code>
+</blockquote>
 
 
 <h3>Search and List</h3>
 
+<blockquote class="code">
 <code>
 sd ticket list
 </code>
+</blockquote>
 
 
 <h3>Update</h3>
 
+<blockquote class="code">
 <code>
 sd ticket update --id 35 -- status=resolved
 </code>
+</blockquote>
 
 <h3>Comments</h3>
 
 
+<blockquote class="code">
 <code>
 sd ticket comment create --id 35<br>
 sd ticket comment list --id 35<br>
 sd ticket comment show --id 1234<br>
 </code>
+</blockquote>
 
 
 
 <h3>Attachments</h3>
+<blockquote class="code">
 <code>
 sd ticket attachment create --id 35 --file=bugfix.patch<br>
 sd ticket attachment list --id 35<br>
 sd ticket attachment show --id 1234<br>
 sd ticket attachment content --id 1234 > to_apply.patch<br>
 </code>
+</blockquote>
 <h2>Syncing</h2>
 <h3>...with other SD users</h3>
 
 <p><b>Publishing:</b></p>
+<blockquote class="code">
 <code>
 sd publish --to jesse@syncwith.us:~/public_html/my_bugs
 </code>
+</blockquote>
 
 <p><b>Pulling:</b></p>
+<blockquote class="code">
 <code>
 sd pull --from http://syncwith.us/~clkao/mybugs
 </code>
+</blockquote>
 
 <h3>...with other bug tracking systems</h3>
 <p>The first external systems SD can sync with are <a href="http://bestpractical.com/rt">RT</a> and <a href="http://hiveminder.com">Hiveminder</a>.  Building <i>foreign replica types</i> for other bug tracking systemis a fairly straightforward process.
 If you're interested in building a replica type for your bug tracker
  <a href="/contact">drop Prophet's developers a line</a>.
 <p><b>Pushing:</b></p>
+<blockquote class="code">
 <code>
 sd push --to rt:http://rt3.fsck.com|rt3|Owner='jesse'
 </code>
+</blockquote>
 
 <p><b>Pulling:</b></p>
+<blockquote class="code">
 <code>
 sd pull --from rt:http://rt3.fsck.com|rt3|Owner='jesse'
 </code>
+</blockquote>
 </&>

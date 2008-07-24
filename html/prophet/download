@@ -1,10 +1,10 @@
 <&| /_elements/wrapper, title => 'Get Prophet' &>
 <p>At this early stage of the game, you should download Prophet directly from its home in Subversion. The following command will get you a copy of the source tree you can install:</p>
-<blockquote>
+<blockquote class="code">
 <pre>svn co http://code.bestpractical.com/bps-public/Prophet/trunk prophet</pre>
 </blockquote>
 <p>Once you've downloaded Prophet, you can install it:</p>
-<blockquote>
+<blockquote class="code">
 <pre>cd prophet
 PERL_MM_USE_DEFAULT=1 perl Makefile.PL
 make test

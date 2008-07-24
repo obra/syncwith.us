@@ -101,7 +101,23 @@ div.content {
 }
 
 div.content blockquote {
- overflow-x: scroll;
+  font-size: 1.5em;
+  font-style: italic;
+  background: #ffc;
+  padding: 1em;
+  margin-left: 4em;
+  margin-right: 4em;
+  border: 1px solid #eeb;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+}
+
+div.content blockquote.code {
+  font-size: 1em;
+  font-style: normal;
+ overflow-x: auto;
+  margin-left: 0em;
+  margin-right: 0em;
 }
 
 

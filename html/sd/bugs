@@ -1,7 +1,7 @@
 <&|/_elements/wrapper, title => "Tracking bugs in SD" &>
 <p>It should come as no surprise that we use SD to track bugs in itself.  If you have a running copy of SD, you can create a local clone of the current live database by running:</p>
-<blockquote><pre>PROPHET_REPO=~/sd-bugs sd pull --from http://fsck.com/~jesse/sd-bugs/8BD09796-5451-11DD-B884-298C21F17397
+<blockquote class="code"><pre>PROPHET_REPO=~/sd-bugs sd pull --from http://fsck.com/~jesse/sd-bugs/8BD09796-5451-11DD-B884-298C21F17397
 </pre></blockquote>
 <p>If the developers have been diligent, you should see a currentish bug list below</p>
-<iframe src="sd-bug-output.html"  width="100%"/>
+<iframe src="/sd/buglist/8BD09796-5451-11DD-B884-298C21F17397/ticket/index.html"  width="100%"/>
 </&>

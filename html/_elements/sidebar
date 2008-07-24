@@ -5,11 +5,11 @@
 <li>
 Prophet
 <ul>
-<li><a href="/prophet/">About Prophet</a>
+%#<li><a href="/prophet/">About Prophet</a>
 <li><a href="/prophet/download">Get Prophet</a>
 </ul>
 <li>SD<ul>
-<li><a href="/sd/">About SD</a>
+%#<li><a href="/sd/">About SD</a>
 <li><a href="/sd/download">Get SD</a>
 %#<li><a href="/sd/screenshots">SD screenshots</a>
 <li><a href="/sd/using">Using SD</a>
