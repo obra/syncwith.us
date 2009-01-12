@@ -58,17 +58,18 @@ sub process_help {
     # strip off any lines that read 'see 'sd help $cmd'' which isn't
     # really appropriate for this as all the helpfiles are being displayed
     # in one place
-    $text =~ s/^.*?(?=see 'sd help).*?$//mg;
+    $text =~ s/^.*(?=see 'sd help).*$//mg;
 
     # XXX my god this stuff is ugly and probably also not quite right
     # put paragraph markers around paragraphs
-    $text =~ s/^(\S+.*?)(\n\n|\n$)/\n<p>$1<\/p>\n/mgs;
+    $text =~ s/((?:^\S.*\n)+)/<p>$1<\/p>\n/mg;
 
     # put codeblock markers around code blocks
-    $text =~ s/^ {4}(\S+.*)(?!(?:^\S+|^ {6}\S+|^\s*$))/<blockquote class="code"><code>$1<\/code><\/blockquote>/mg;
+    $text =~ s/((?:^    \S.*\n)+)/<blockquote class="code"><code>$1<\/code><\/blockquote>\n/mg;
 
     # TODO: put code annotation markup around code annotations (lines indented
     # by 6 spaces in the raw help (this markup doesn't exist yet in the CSS)
+    $text =~ s/((?:^      \S.*\n)+)/<p class="code-annotation">$1<\/p>\n/mg;
 
     return $text;
 }    # process_help_file

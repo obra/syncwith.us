@@ -115,9 +115,12 @@ div.content blockquote {
 div.content blockquote.code {
   font-size: 1em;
   font-style: normal;
- overflow-x: auto;
+  overflow-x: auto;
   margin-left: 0em;
   margin-right: 0em;
 }
 
-
+div.content p.code-annotation {
+  margin-left: 2em;
+  font-size: .8em;
+}
