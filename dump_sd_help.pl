@@ -1,9 +1,9 @@
 #!/usr/bin/perl 
-# Process sd help output to put on the website (Mason/html)
+# Process realsd help output to put on the website (Mason/html)
 use strict;
 use warnings;
 
-open GETHELP, 'sd help |' ;
+open GETHELP, 'realsd help |' ;
 my @cmds;
 
 # grab what helps exist from the help index
@@ -21,7 +21,7 @@ close GETHELP;
 print "<&| /_elements/wrapper, title => 'Using SD' &>\n"; # mason header
 
 for (@cmds) {
-    open my $cmd, "sd help $_ |";
+    open my $cmd, "realsd help $_ |";
     my $text = slurp($cmd);
 
     # now we can do the real processing
@@ -55,7 +55,7 @@ sub process_help {
     # headline
     $text =~ s/^\n+sd 0.01 - (.*)\n-+\n+/\n<h2>$1<\/h2>\n\n/;
 
-    # strip off any lines that read 'see 'sd help $cmd'' which isn't
+    # strip off any lines that read 'see 'realsd help $cmd'' which isn't
     # really appropriate for this as all the helpfiles are being displayed
     # in one place
     $text =~ s/^.*(?=see 'sd help).*$//mg;

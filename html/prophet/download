@@ -1,7 +1,7 @@
 <&| /_elements/wrapper, title => 'Get Prophet' &>
 <p>At this early stage of the game, you should download Prophet directly from its home in Subversion. The following command will get you a copy of the source tree you can install:</p>
 <blockquote class="code">
-<pre>svn co http://code.bestpractical.com/bps-public/Prophet/trunk prophet</pre>
+<a href="http://github.com/obra/prophet">Download prophet from github</a>
 </blockquote>
 <p>Once you've downloaded Prophet, you can install it:</p>
 <blockquote class="code">
