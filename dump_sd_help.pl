@@ -60,14 +60,13 @@ sub process_help {
     # in one place
     $text =~ s/^.*(?=see 'sd help).*$//mg;
 
-    # XXX my god this stuff is ugly and probably also not quite right
     # put paragraph markers around paragraphs
     $text =~ s/((?:^\S.*\n)+)/<p>$1<\/p>\n/mg;
 
     # put codeblock markers around code blocks
     $text =~ s/((?:^    \S.*\n)+)/<blockquote class="code"><code>$1<\/code><\/blockquote>\n/mg;
 
-    # TODO: put code annotation markup around code annotations (lines indented
+    # put code annotation markup around code annotations (lines indented
     # by 6 spaces in the raw help (this markup doesn't exist yet in the CSS)
     $text =~ s/((?:^      \S.*\n)+)/<p class="code-annotation">$1<\/p>\n/mg;
 
