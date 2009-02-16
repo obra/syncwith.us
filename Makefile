@@ -2,7 +2,7 @@ BUILD=/tmp/syncbuild
 
 build:
 	rm -rf ${BUILD}
-	realsd publish --html  --to html/sd/buglist
+	#realsd publish --html  --to html/sd/buglist
 	perl ./microserver &
 	sleep 3
 	mkdir ${BUILD}

@@ -1,107 +1,418 @@
 <&| /_elements/wrapper, title => 'Using SD' &>
-<h2>Setting up your environment</h2>
-<p>To tell SD where to find your bug database, you simply need to set the environment variable <code>SD_REPO</code>
+
+<p><h2>Getting started with SD</h2>
 </p>
-<blockquote class="code"><code>export SD_REPO=~/.sd-bugs</code></blockquote>
 
-<p>To configure listing formats, you can set configuration directives in your 'prophetrc' file inside your SD repository. For example:</p>
-<blockquote class="code">
-<code>
-summary_format_ticket = %4s },$luid | %-11.11s,status | %-70.70s,summary
-
-</code>
-</blockquote>
+<p>SD is a peer to peer ticket tracking system built on the Prophet 
+distributed database. SD is designed to make it easy to work with tickets
+and to share ticket databases with your collaborators.
 </p>
-<h2>Working with bugs locally</h2>
-<h3>Create</h3>
+
+<p>To get started with SD, you need a ticket database. To get an ticket 
+database, you have two options: You can clone an existing database
+or start a new one.
+</p>
+
+<p>SD will store its local database replica in the ".sd" directory in your 
+home directory. You can override this behaviour by setting the SD_REPO
+environment variable.
+</p>
+
+<p>To clone a ticket database:
+</p>
+
+<blockquote class="code"><code>    sd clone --from http://example.com/path/to/sd
+</code></blockquote>
+
+<p>To start a new ticket database:
+</p>
+
+<blockquote class="code"><code>    sd init
+</code></blockquote>
+
+<p>To create a ticket, run:
+</p>
+
+<blockquote class="code"><code>    sd ticket create
+</code></blockquote>
+
+<p>To publish your database:
+</p>
+
+<blockquote class="code"><code>    sd publish --to joeuser@myhost.example.com:public_html/mydb
+</code></blockquote>
+
+<p>To learn a bit more about what you can do with SD:
+</p>
+
+<blockquote class="code"><code>    sd help
+</code></blockquote>
+
+<p><h2>Searching for and displaying tickets</h2>
+</p>
+
+<blockquote class="code"><code>    sd ticket search
+</code></blockquote>
+<p class="code-annotation">      List all tickets with a status that does not match 'closed'.
+      Note that 'list' is an alias for 'search'.
+</p>
+
+<blockquote class="code"><code>    sd ticket search --regex abc
+</code></blockquote>
+<p class="code-annotation">      List all tickets with content matching 'abc'. Regular
+      expressions are Perl regexes.
+</p>
+
+<blockquote class="code"><code>    sd ticket search -- status!=closed summary =~ http 
+</code></blockquote>
+<p class="code-annotation">      List all tickets with a status that does match closed
+      and a summary matching 'http'.
+</p>
+
+<blockquote class="code"><code>    sd ticket search --group owner
+</code></blockquote>
+       List all tickets with a status that does not match 'closed', 
+       grouped by owner.
+
+<blockquote class="code"><code>    sd ticket basics 1234
+</code></blockquote>
+<p class="code-annotation">      Show basic information (metadata only) for the ticket with local id 1234.
+</p>
+
+<blockquote class="code"><code>    sd ticket show 1234
+</code></blockquote>
+<p class="code-annotation">      Show basic information, comments, and history for the ticket with local
+      id 1234.  ('details' is an alias for 'show')
+</p>
+
+<blockquote class="code"><code>    sd ticket show 1234 --all-props
+</code></blockquote>
+<p class="code-annotation">      Show all properties of the given ticket, even if they aren't in
+      the database setting common_ticket_props.
+</p>
+
+<blockquote class="code"><code>    sd ticket show 1234 --skip-history
+</code></blockquote>
+<p class="code-annotation">      Show only metadata and comments for the ticket 1234 (but not
+      history).
+</p>
+
+<blockquote class="code"><code>    sd ticket show 1234 --show-history
+</code></blockquote>
+<p class="code-annotation">      Override the disable_ticket_show_history_by_default config option
+      if it is set for this database. (See 'sd help config' for
+      more info.)
+</p>
+
+<blockquote class="code"><code>    sd ticket history 1234
+</code></blockquote>
+<p class="code-annotation">      Show history for the ticket with local id 1234.
+</p>
+
+<blockquote class="code"><code>    sd ticket delete 1234
+</code></blockquote>
+<p class="code-annotation">      Delete ticket with local id 1234.
+</p>
+
+<p><h2>Creating and Updating tickets</h2>
+</p>
+
+<blockquote class="code"><code>    sd ticket create
+</code></blockquote>
+<p class="code-annotation">      Invokes a text editor with a ticket creation template.
+      Note that 'new' is an alias for 'create'.
+</p>
+
+<blockquote class="code"><code>    sd ticket create --verbose
+</code></blockquote>
+<p class="code-annotation">      Invokes a text editor with a ticket creation template
+      and also shows descriptions and valid values for
+      properties.
+</p>
+
+<blockquote class="code"><code>    sd ticket create -- summary="This is a summary" status=open
+</code></blockquote>
+<p class="code-annotation">      Create a new ticket non-interactively.
+</p>
+
+<blockquote class="code"><code>    sd ticket update 123 -- status=closed
+</code></blockquote>
+<p class="code-annotation">      Sets the status of the ticket with local id 123 to closed.
+      Note that 'edit' is an alias for 'update'.
+</p>
+
+<blockquote class="code"><code>    sd ticket update 123
+</code></blockquote>
+<p class="code-annotation">      Interactively update the ticket with local id 123 in a text
+      editor.
+</p>
+
+<blockquote class="code"><code>    sd ticket update 123 --verbose
+</code></blockquote>
+<p class="code-annotation">      Interactively update the ticket with local id 123 in a text
+      editor and show descriptions and valid values for props.
+</p>
+
+<blockquote class="code"><code>    sd ticket update 123 --all-props
+</code></blockquote>
+<p class="code-annotation">      Interactively update the ticket with local id 123 in a text
+      editor, presenting all the props of the record for editing instead of
+      just those specified by the database setting 'common_ticket_props'.
+</p>
+
+<blockquote class="code"><code>    sd ticket update fad5849a-67f1-11dd-bde1-5b33d3ff2799 -- status=closed
+</code></blockquote>
+<p class="code-annotation">      Sets the status of the ticket with uuid
+      fad5849a-67f1-11dd-bde1-5b33d3ff2799 to closed.
+</p>
+
+<blockquote class="code"><code>    sd ticket resolve 123
+</code></blockquote>
+<p class="code-annotation">      Sets the status of the ticket with local id 123 to closed.
+</p>
+
+<blockquote class="code"><code>    sd ticket resolve 123 --edit
+</code></blockquote>
+<p class="code-annotation">      Sets the status of the ticket with local id 123 to closed,
+      allowing you to edit any properties in an editor and
+      optionally add a comment in the process.
+</p>
+
+<p><h2>Working with ticket attachments</h2>
+</p>
+
+<blockquote class="code"><code>    sd ticket attachment create 456 --file bugfix.patch
+</code></blockquote>
+<p class="code-annotation">      Create a new attachment on this ticket from the file 'bugfix.patch'.
+</p>
+
+<blockquote class="code"><code>    sd ticket attachment list 456
+</code></blockquote>
+<p class="code-annotation">      Show all attachemnts on ticket 456.
+</p>
+
+<blockquote class="code"><code>    sd ticket attachment show 567
+</code></blockquote>
+<p class="code-annotation">      Show the properties of attachment 567 (including the content).
+</p>
+
+<blockquote class="code"><code>    sd ticket attachment content 567
+</code></blockquote>
+<p class="code-annotation">      Send the content of attachment 567 to STDOUT.
+</p>
+
+<blockquote class="code"><code>    sd ticket attachment content 567 &gt; to_apply.patch
+</code></blockquote>
+<p class="code-annotation">      Save the contents of attachment 567 to a file so the patch
+      can be applied.
+</p>
+
+<p><h2>Sharing ticket databases</h2>
+</p>
+
+<blockquote class="code"><code>    sd clone --from http://example.com/path/to/sd
+</code></blockquote>
+<p class="code-annotation">      Create a new copy (replica) of a published SD replica from an
+      http, ftp or file URL.
+</p>
+
+<blockquote class="code"><code>    sd pull --from http://example.com/path/to/sd
+</code></blockquote>
+<p class="code-annotation">      Integrate changes from a published SD replica over http, ftp or 
+      file URL.
+</p>
+
+<blockquote class="code"><code>    sd pull --all
+</code></blockquote>
+<p class="code-annotation">      Integrate changes from all replicas this replica has pulled from
+      before.
+</p>
+
+<blockquote class="code"><code>    sd pull --local
+</code></blockquote>
+<p class="code-annotation">      Integrate changes from all replicas currently announcing themselves
+      on the local network using Bonjour
+</p>
+
+<blockquote class="code"><code>    sd publish --to jesse@server:path/to/destination
+</code></blockquote>
+<p class="code-annotation">      Publish a copy of this replica to a remote server using rsync.
+</p>
+
+<blockquote class="code"><code>    sd publish --html --replica --to jesse@server:path/to/destination
+</code></blockquote>
+<p class="code-annotation">      Publish a copy of this replica, including a static html representation,
+      to a remote server using rsync.
+</p>
+
+<blockquote class="code"><code>    sd server --port 9876
+</code></blockquote>
+<p class="code-annotation">      Start an sd replica server on port 9876. This command will make your 
+      replica browsable and pullable by anyone with remote access to your 
+      computer.
+</p>
+
+<blockquote class="code"><code>    sd server --writable --port 9876
+</code></blockquote>
+<p class="code-annotation">      Start an sd replica server on port 9876, with UNAUTHENTICATED,
+      PUBLIC WRITE ACCESS via HTTP POST.  This command will make your
+      replica modifiable, browsable and pullable by ANYONE with remote
+      access to your computer.
+</p>
+
+<p>SD can sync to external systems as well as itself. Currently, there are foreign
+replica types for RT (<a href="http://bestpractical.com/rt">http://bestpractical.com/rt</a>) and Hiveminder
+(<a href="http://hiveminder.com/">http://hiveminder.com/</a>). If you're interested in building a replica type for
+your bug tracker, you should get in touch with SD's developers (see
+<a href="http://syncwith.us/contact">http://syncwith.us/contact</a>).
+</p>
+
+<blockquote class="code"><code>    sd push --to rt:<a href="http://rt3.fsck.com">http://rt3.fsck.com</a>|rt3|Owner='jesse'
+</code></blockquote>
+<p class="code-annotation">      Push changes to the given foreign replica. Foreign replica
+      schemas will vary based on the replica type.
+</p>
+
+<blockquote class="code"><code>    sd pull --from rt:<a href="http://rt3.fsck.com">http://rt3.fsck.com</a>|rt3|Owner='jesse'
+</code></blockquote>
+<p class="code-annotation">      Pull changes from a foreign replica to be merged into the
+      local replica.
+</p>
+
+<p><h2>Environment variables</h2>
+</p>
+
+<p>The following environmental variables can be set to affect SD's
+configuration. Example syntax is for bash-like shells.
+</p>
+
+<blockquote class="code"><code>    export PROPHET_DEVEL=1
+</code></blockquote>
+<p class="code-annotation">      Turn on various development mode checks, warnings and autoreloading
+      of modules.
+</p>
+
+<blockquote class="code"><code>    export PROPHET_USER=name
+</code></blockquote>
+<p class="code-annotation">      Use 'name' as the creator of changesets.
+</p>
+
+<blockquote class="code"><code>    export EMAIL=jesse@example.com
+</code></blockquote>
+<p class="code-annotation">      Use jesse@example.com as the default email address for reporting 
+      tickets.
+</p>
+
+<blockquote class="code"><code>    export PROPHET_REPLICA_TYPE=prophet
+</code></blockquote>
+<p class="code-annotation">      Use the prophet native replica type. In the future other backend
+      replica types may be available.
+</p>
+
+<blockquote class="code"><code>    export SD_REPO=/path/to/sd/replica
+</code></blockquote>
+<p class="code-annotation">      Specify where the ticket database SD is using should reside.
+</p>
+
+<blockquote class="code"><code>    export SD_CONFIG=/path/to/sd/config/file
+</code></blockquote>
+<p class="code-annotation">      Specify where the configuration file SD is using should reside.
+</p>
+
+<blockquote class="code"><code>    export PROPHET_HISTFILE=~/.sd-history
+</code></blockquote>
+<p class="code-annotation">      Specify where the interactive shell should store its history.
+</p>
+
+<blockquote class="code"><code>    export PROPHET_HISTLENGTH=100
+</code></blockquote>
+<p class="code-annotation">      Specify how much history the interactive shell should store.
+</p>
 
 
-<blockquote class="code">
-<code>
-sd ticket create -- summary="This is a test ticket" status=new sample-property="any prop name is ok!"
-</code>
-</blockquote>
 
-<h3>Display</h3>
+<p><h2>Configuration Options</h2>
+</p>
 
-<blockquote class="code">
-<code>
-sd ticket show --id 35
-</code>
-</blockquote>
+<p>SD supports both a user-wide configuration file ($HOME/.sdrc and
+per-database configuration file (/path/to/repo/sdrc). If both configuration
+files are present, the database-specific config file will be used.
+</p>
 
+<p>Currently, the following configuration variables are available:
+</p>
 
-<h3>Search and List</h3>
+<blockquote class="code"><code>    email_address = foo@bar.com
+</code></blockquote>
+<p class="code-annotation">      Specifies an email address to use as the default for tickets'
+      reporter field. (Overrides the EMAIL environmental variable if
+      that is also set.)
+</p>
 
-<blockquote class="code">
-<code>
-sd ticket list
-</code>
-</blockquote>
+<blockquote class="code"><code>    summary_format_ticket = %4s },$luid | %-11.11s,status | %-60.60s,summary
+</code></blockquote>
+<p class="code-annotation">      Specifies how to format ticket summaries (when listing tickets, e.g.).
+      (See also: help summary_format_ticket.)
+</p>
 
+<blockquote class="code"><code>    default_sort_ticket_list = status
+</code></blockquote>
+<p class="code-annotation">      Bug property to determine order of display when listing tickets. (Can
+      be any property; will be compared lexically.)
+</p>
 
-<h3>Update</h3>
+<blockquote class="code"><code>    default_group_ticket_list = milestone
+</code></blockquote>
+<p class="code-annotation">      Bug property to group tickets by when displaying lists. (Can be any
+      property.)
+</p>
 
-<blockquote class="code">
-<code>
-sd ticket update --id 35 -- status=resolved
-</code>
-</blockquote>
+<blockquote class="code"><code>    disable_ticket_show_history_by_default = 1
+</code></blockquote>
+<p class="code-annotation">      Don't display ticket history when running 'sd ticket show'. Can
+      be overridden by passing the '--show-history' arg to the
+      command.
+</p>
 
-<h3>Comments</h3>
+<p>For information on environmental variables that can affect SD, see
+'sd help environment'.
+</p>
 
+<p><h2>The summary_format_ticket configuration option</h2>
+</p>
 
-<blockquote class="code">
-<code>
-sd ticket comment create --id 35<br>
-sd ticket comment list --id 35<br>
-sd ticket comment show --id 1234<br>
-</code>
-</blockquote>
+<p>The summary_format_ticket configuration directive consists of any number
+of comma-separated pairs, with each pair separated from the next by a vertical
+bar (|). Any amount of whitespace may appear before or after the | and will not
+affect the summary format.
+</p>
 
+<p>Here is an example:
+</p>
 
+<blockquote class="code"><code>    summary_format_ticket = %5.5s },$luid | %8.8s,status | %-52.52s,summary
+</code></blockquote>
 
-<h3>Attachments</h3>
-<blockquote class="code">
-<code>
-sd ticket attachment create --id 35 --file=bugfix.patch<br>
-sd ticket attachment list --id 35<br>
-sd ticket attachment show --id 1234<br>
-sd ticket attachment content --id 1234 > to_apply.patch<br>
-</code>
-</blockquote>
-<h2>Syncing</h2>
-<h3>...with other SD users</h3>
+<p>Let's deconstruct this example. It consists of three pairs. The first pair is
+'%5.5s },$luid'. The first item of the pair should look somewhat familiar to
+anyone who's programmed in Perl or C before. It consists of a format string,
+like that used in Perl's and C's printf function, and can be prefixed or
+followed by any other characters (' }' in this case).
+</p>
 
-<p><b>Publishing:</b></p>
-<blockquote class="code">
-<code>
-sd publish --to jesse@syncwith.us:~/public_html/my_bugs
-</code>
-</blockquote>
+<p>The second item is the property to be formatted. It can be any ticket property,
+but if you want the local uid (luid) or the universal uid (uuid), it must be
+prefixed with the $ character (see the first pair in the example).
+</p>
 
-<p><b>Pulling:</b></p>
-<blockquote class="code">
-<code>
-sd pull --from http://syncwith.us/~clkao/mybugs
-</code>
-</blockquote>
+<p>When printing the summary format for the ticket, the value of the given
+property for that ticket will be subbed into the format string (e.g. '%s') and
+any non-format characters in the format field will be printed as-is. If no
+format field is supplied with a given pair, '%s' is assumed.
+</p>
 
-<h3>...with other bug tracking systems</h3>
-<p>The first external systems SD can sync with are <a href="http://bestpractical.com/rt">RT</a> and <a href="http://hiveminder.com">Hiveminder</a>.  Building <i>foreign replica types</i> for other bug tracking systemis a fairly straightforward process.
-If you're interested in building a replica type for your bug tracker
- <a href="/contact">drop Prophet's developers a line</a>.
-<p><b>Pushing:</b></p>
-<blockquote class="code">
-<code>
-sd push --to rt:http://rt3.fsck.com|rt3|Owner='jesse'
-</code>
-</blockquote>
+<p>For more help on format strings, see
+<a href="http://perldoc.perl.org/functions/sprintf.html.">http://perldoc.perl.org/functions/sprintf.html.</a>
+</p>
 
-<p><b>Pulling:</b></p>
-<blockquote class="code">
-<code>
-sd pull --from rt:http://rt3.fsck.com|rt3|Owner='jesse'
-</code>
-</blockquote>
 </&>

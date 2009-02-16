@@ -5,7 +5,7 @@
 </p>
 <p>The following command will get you a copy of the source tree you can install:</p>
 <blockquote class="code">
-<pre>svn co http://code.bestpractical.com/bps-public/sd/trunk sd</pre>
+<a href="http://github.com/obra/sd">Download SD from github</a>
 </blockquote>
 <p>Once you've downloaded SD, you can install it:</p>
 <blockquote class="code">
